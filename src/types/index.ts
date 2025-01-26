@@ -1,33 +1,46 @@
 export interface CharacterResponse {
-  height: string;
-  mass: string;
-  hair_color: string;
-  skin_color: string;
-  eye_color: string;
-  birth_year: string;
-  gender: string;
-  created: string;
-  edited: string;
-  name: string;
-  homeworld: string;
-  url: string;
+  properties: {
+    height: string;
+    mass: string;
+    hair_color: string;
+    skin_color: string;
+    eye_color: string;
+    birth_year: string;
+    gender: string;
+    created: string;
+    edited: string;
+    name: string;
+    homeworld: string;
+    url: string;
+  }
+  uid: string;
 }
 
 export interface FilmResponse {
-  characters: string[];
-  planets: string[];
-  starships: string[];
-  vehicles: string[];
-  species: string[];
-  created: string;
-  edited: string;
-  producer: string;
-  title: string;
-  episode_id: number;
-  director: string;
-  release_date: string;
-  opening_crawl: string;
-  url: string;
+  properties: {
+    characters: string[];
+    planets: string[];
+    starships: string[];
+    vehicles: string[];
+    species: string[];
+    created: string;
+    edited: string;
+    producer: string;
+    title: string;
+    episode_id: number;
+    director: string;
+    release_date: string;
+    opening_crawl: string;
+    url: string;
+  }
+  uid: string
+}
+
+export interface AllCharactersResponse {
+  results: [
+    {name: string, uid: string}
+  ];
+  total_pages: number;
 }
 
 export interface Character {

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Character, CharacterResponse, Film, FilmResponse } from "../types";
 
 interface InfoCardProps {
@@ -7,9 +8,8 @@ interface InfoCardProps {
 
 const InfoCard = ({ type, data }: InfoCardProps) => {
   if (data) {
-    console.log(data);
     if (type === "people") {
-      const character = data as Character;
+      const character = data.properties as Character;
       return (
         <div className="w-full max-w-md bg-gray-800 text-yellow-400 border-2 border-yellow-400 rounded-lg overflow-hidden">
           <div className="p-6">
@@ -47,38 +47,46 @@ const InfoCard = ({ type, data }: InfoCardProps) => {
               <p className="font-semibold">Skin Color:</p>
               <p>{character.skin_color}</p>
             </div>
+            <div className="mt-6">
+              <Link
+                to={`/characters/${data.uid}`}
+                className="flex items-center hover:text-white underline"
+              >
+                Click here to see more about {character.name}
+              </Link>
+            </div>
           </div>
         </div>
       );
     } else {
-      const film = data as Film;
+      const film = data.properties as Film;
       return (
         <div className="w-full max-w-md bg-gray-800 text-yellow-400 border-2 border-yellow-400 rounded-lg overflow-hidden">
           <div className="p-6">
-          <div className="mb-4">
-            <h2 className="text-2xl font-bold text-center">{film.title}</h2>
-            <p className="text-center">Episode {film.episode_id}</p>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <p className="font-semibold">Director:</p>
-              <p>{film.director}</p>
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold text-center">{film.title}</h2>
+              <p className="text-center">Episode {film.episode_id}</p>
             </div>
-            <div>
-              <p className="font-semibold">Producer:</p>
-              <p>{film.producer}</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="font-semibold">Director:</p>
+                <p>{film.director}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Producer:</p>
+                <p>{film.producer}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Release Date:</p>
+                <p>{film.release_date}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Opening Crawl:</p>
+                <p className="text-sm italic">
+                  {film.opening_crawl.slice(0, 150)}...
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold">Release Date:</p>
-              <p>{film.release_date}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Opening Crawl:</p>
-              <p className="text-sm italic">
-                {film.opening_crawl.slice(0, 150)}...
-              </p>
-            </div>
-          </div>
           </div>
         </div>
       );

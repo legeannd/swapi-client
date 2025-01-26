@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchSwapi } from ".";
+import { AllCharactersResponse } from "../types";
 
 export const useData = (type: string) => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery<AllCharactersResponse>({
     queryKey:[type],
     queryFn: async () => fetchSwapi(type).then((res) => res)
   });
@@ -16,10 +17,10 @@ export const useSearchByName = (type: string, name: string) => {
     queryFn: async () => {
       if (type === 'films') {
         const res = await fetchSwapi(`${type}/?title=${name}`);
-        return res.result[0].properties;
+        return res.result[0];
       } else {
         const res = await fetchSwapi(`${type}/?name=${name}`);
-        return res.result[0].properties;
+        return res.result[0];
       }
     },
     enabled: !!name,
