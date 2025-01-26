@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchSwapi } from ".";
-import { AllCharactersResponse } from "../types";
+import { AllCharactersResponse, AllFilmsResponse } from "../types";
 
 export const useData = (type: string) => {
-  const { data, isLoading, isError } = useQuery<AllCharactersResponse>({
+  const { data, isLoading, isError } = useQuery<AllCharactersResponse | AllFilmsResponse>({
     queryKey:[type],
     queryFn: async () => fetchSwapi(type).then((res) => res)
   });

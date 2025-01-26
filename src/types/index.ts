@@ -38,7 +38,20 @@ export interface FilmResponse {
 
 export interface AllCharactersResponse {
   results: [
-    {name: string, uid: string}
+    { name: string, uid: string }
+  ];
+  total_pages: number;
+}
+
+export interface AllFilmsResponse {
+  result: [
+    {
+      uid: string, 
+      properties: {
+        title: string,
+        director: string,
+      }
+    }
   ];
   total_pages: number;
 }

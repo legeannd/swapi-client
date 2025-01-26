@@ -1,11 +1,11 @@
 import { Link } from "react-router";
 import CharacterAvatar from "./CharacterAvatar";
 
-interface CharacterListProps {
+interface CharactersListProps {
   results: [{ uid: string; name: string }];
 }
 
-const CharactersList = ({ results }: CharacterListProps) => {
+const CharactersList = ({ results }: CharactersListProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {results.map((character) => {
