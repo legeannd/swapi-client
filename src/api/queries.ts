@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchSwapi } from ".";
-import { AllCharactersResponse, AllFilmsResponse, Character } from "../types";
+import { AllCharactersResponse, AllFilmsResponse, Character, Film } from "../types";
 
 export const useData = (type: string) => {
   const { data, isLoading, isError } = useQuery<AllCharactersResponse | AllFilmsResponse>({
@@ -33,6 +33,15 @@ export const useDetailedCharacter = (uid: string) => {
   const { data, isLoading, isError } = useQuery<Character>({
     queryKey:[`people:${uid}`],
     queryFn: async () => fetchSwapi(`people/${uid}`).then((res) => res).then((res) => res.result.properties)
+  });
+
+  return { data, isLoading, isError };
+}
+
+export const useDetailedFilm = (uid: string) => {
+  const { data, isLoading, isError } = useQuery<Film>({
+    queryKey:[`films:${uid}`],
+    queryFn: async () => fetchSwapi(`films/${uid}`).then((res) => res).then((res) => res.result.properties)
   });
 
   return { data, isLoading, isError };

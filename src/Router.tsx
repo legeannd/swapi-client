@@ -4,6 +4,7 @@ import { DefaultLayout } from "./layouts/Default";
 import Characters from "./pages/characters/index";
 import CharacterDetails from "./pages/characters/CharacterDetails";
 import Films from "./pages/films/index";
+import FilmDetails from "./pages/films/FilmDetails";
 
 export function Router() {
   return (
@@ -13,6 +14,7 @@ export function Router() {
         <Route path="/characters" element={<Characters />} />
         <Route path="/characters/:id" element={<CharacterDetails />} />
         <Route path="/films" element={<Films />} />
+        <Route path="/films/:id" element={<FilmDetails />} />
       </Route>
     </Routes>
   );
