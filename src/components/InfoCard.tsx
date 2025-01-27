@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import { Character, CharacterResponse, Film, FilmResponse } from "../types";
+import { Character, CharacterResponse, Film, FilmResponse, Starship, StarshipResponse } from "../types";
 
 interface InfoCardProps {
   type: string;
-  data: CharacterResponse | FilmResponse;
+  data: CharacterResponse | FilmResponse | StarshipResponse;
 }
 
 const InfoCard = ({ type, data }: InfoCardProps) => {
@@ -58,7 +58,7 @@ const InfoCard = ({ type, data }: InfoCardProps) => {
           </div>
         </div>
       );
-    } else {
+    } else if (type === "films") {
       const film = data.properties as Film;
       return (
         <div className="w-full max-w-md bg-gray-800 text-yellow-400 border-2 border-yellow-400 rounded-lg overflow-hidden">
@@ -86,6 +86,51 @@ const InfoCard = ({ type, data }: InfoCardProps) => {
                   {film.opening_crawl.slice(0, 150)}...
                 </p>
               </div>
+            </div>
+            <div className="mt-6">
+              <Link
+                to={`/films/${data.uid}`}
+                className="flex items-center hover:text-white underline"
+              >
+                Click here to see more about {film.title}
+              </Link>
+            </div>
+          </div>
+        </div>
+      );
+    } else if(type === "starships") {
+      const starship = data.properties as Starship;
+      return (
+        <div className="w-full max-w-md bg-gray-800 text-yellow-400 border-2 border-yellow-400 rounded-lg overflow-hidden">
+          <div className="p-6">
+            <div className="mb-4">
+              <h2 className="text-2xl font-bold text-center">{starship.name}</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="font-semibold">Model:</p>
+                <p>{starship.model}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Class:</p>
+                <p>{starship.starship_class}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Crew:</p>
+                <p>{starship.crew}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Passengers:</p>
+                <p>{starship.passengers}</p>
+              </div>
+            </div>
+            <div className="mt-6">
+              <Link
+                to={`/starships/${data.uid}`}
+                className="flex items-center hover:text-white underline"
+              >
+                Click here to see more about {starship.name}
+              </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Home, Users, Clapperboard } from "lucide-react"
+import { Home, Users, Clapperboard, Rocket } from "lucide-react"
 import { Link } from "react-router"
 
 const MenuBar = () => {
@@ -18,9 +18,15 @@ const MenuBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/Films" className="flex items-center hover:text-white">
+          <Link to="/films" className="flex items-center hover:text-white">
             <Clapperboard className="mr-2" size={20} />
             Films
+          </Link>
+        </li>
+        <li>
+          <Link to="/starships" className="flex items-center hover:text-white">
+            <Rocket className="mr-2" size={20} />
+            Starships
           </Link>
         </li>
       </ul>

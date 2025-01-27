@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchSwapi } from ".";
-import { AllCharactersResponse, AllFilmsResponse, Character, Film } from "../types";
+import { AllCharactersResponse, AllFilmsResponse, AllStarshipsResponse, Character, Film, Starship } from "../types";
 
 export const useData = (type: string) => {
-  const { data, isLoading, isError } = useQuery<AllCharactersResponse | AllFilmsResponse>({
+  const { data, isLoading, isError } = useQuery<AllCharactersResponse | AllFilmsResponse | AllStarshipsResponse>({
     queryKey:[type],
     queryFn: async () => fetchSwapi(type).then((res) => res)
   });
@@ -42,6 +42,15 @@ export const useDetailedFilm = (uid: string) => {
   const { data, isLoading, isError } = useQuery<Film>({
     queryKey:[`films:${uid}`],
     queryFn: async () => fetchSwapi(`films/${uid}`).then((res) => res).then((res) => res.result.properties)
+  });
+
+  return { data, isLoading, isError };
+}
+
+export const useDetailedStarship = (uid: string) => {
+  const { data, isLoading, isError } = useQuery<Starship>({
+    queryKey:[`starships:${uid}`],
+    queryFn: async () => fetchSwapi(`starships/${uid}`).then((res) => res).then((res) => res.result.properties)
   });
 
   return { data, isLoading, isError };
