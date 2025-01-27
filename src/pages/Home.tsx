@@ -31,7 +31,7 @@ function Home() {
         Greetings, young Padawan! May the Force be with you on your new journey.
       </p>
       <p className="text-xs md:text-sm text-center max-w-2xl mb-8">
-        Use the search input to search about your favorite characters or films.
+        Use the search input to search about your favorite characters, films or starships.
       </p>
       <div className="flex gap-2">
         <SelectType getType={getCurrentType} />
